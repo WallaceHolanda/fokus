@@ -7,14 +7,14 @@ export default function Index() {
       <View style={styles.actions} >
 
         <View style={styles.context}>
-          <Pressable>
-            <Text>Foco</Text>
+          <Pressable style={styles.contextButtonActive}>
+            <Text style={styles.contextButtonText}>Foco</Text>
           </Pressable>
           <Pressable>
-            <Text>Pausa curta</Text>
+            <Text style={styles.contextButtonText}>Pausa curta</Text>
           </Pressable>
           <Pressable>
-            <Text>Pausa longa</Text>
+            <Text style={styles.contextButtonText}>Pausa longa</Text>
           </Pressable>
         </View>
 
@@ -40,6 +40,17 @@ const styles = StyleSheet.create({
   },
   context: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  contextButtonText: {
+    padding: 8,
+    color: '#fff',
+    fontSize: 12.5,
+  },
+  contextButtonActive: {
+    borderRadius: 8,
+    backgroundColor: '#144480',
   },
   actions: {
     gap: 32,
