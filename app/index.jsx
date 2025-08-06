@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { ActionButton } from '../components/action_button';
 import { FokusButton } from '../components/fokus_button';
 
 const pomodoro = [
@@ -34,15 +35,12 @@ export default function Index() {
       <View style={styles.actions} >
         <View style={styles.context}>
           {pomodoro.map((item) => (
-            <Pressable
-              key={item.id}
+            <ActionButton
+              display={item.display}
+              active={item.id === timerType.id}
               onPress={() => setTimerType(item)}
-              style={item.id === timerType.id ? styles.contextButtonActive : null}
             >
-              <Text style={styles.contextButtonText}>
-                {item.display}
-              </Text>
-            </Pressable>
+            </ActionButton>
           ))}
         </View>
 
@@ -70,15 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  contextButtonText: {
-    padding: 8,
-    color: '#fff',
-    fontSize: 12.5,
-  },
-  contextButtonActive: {
-    borderRadius: 8,
-    backgroundColor: '#144480',
   },
   actions: {
     gap: 32,
