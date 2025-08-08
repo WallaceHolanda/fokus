@@ -10,19 +10,19 @@ const pomodoro = [
         id: 'focus',
         initialValue: 25 * 60,
         display: 'Foco',
-        image: require('./pomodoro.png'),
+        image: require('../assets/images/pomodoro.png'),
     },
     {
         id: 'short',
         initialValue: 5 * 60,
         display: 'Pausa curta',
-        image: require('./short.png'),
+        image: require('../assets/images/short.png'),
     },
     {
         id: 'long',
         initialValue: 15 * 60,
         display: 'Pausa longa',
-        image: require('./long.png'),
+        image: require('../assets/images/long.png'),
     }
 ]
 
