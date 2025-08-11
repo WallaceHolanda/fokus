@@ -46,7 +46,7 @@ export default function Layout() {
                     name='tasks/index'
                     options={{
                         title: '',
-                        drawerLabel: 'TLista de Tarefas',
+                        drawerLabel: 'Lista de Tarefas',
                     }}
                 />
             </Drawer>

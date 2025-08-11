@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { ActionButton } from '../components/action_button';
-import { FokusButton } from '../components/fokus_button';
+import { FokusButton } from '../components/FokusButton';
 import { IconPause, IconPlay } from '../components/icons';
 import { Timer } from '../components/timer';
 
