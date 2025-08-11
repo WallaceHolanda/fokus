@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const TaskContext = createContext();
 
@@ -7,6 +7,7 @@ export function TasksProvider({ children }) {
     const [tasks, setTasks] = useState([]);
 
     const addTask = (description) => {
+        console.log('Adding task:', description);
         setTasks((prevTasks) => {
             return [
                 ...prevTasks,
@@ -22,7 +23,10 @@ export function TasksProvider({ children }) {
         setTasks((prevTasks) => {
             return prevTasks.map(task => {
                 if (task.id === id) {
-                    return { ...task, completed: !task.completed };
+                    return {
+                        ...task,
+                        completed: !task.completed,
+                    };
                 }
                 return task;
             });

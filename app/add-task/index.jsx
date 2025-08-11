@@ -1,6 +1,22 @@
+import { router } from "expo-router";
+import { useState } from "react";
 import { Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import useTaskContext from "../../components/context/useTaskContext";
 import { IconSave } from "../../components/icons";
 export default function AddTask() {
+
+    const [description, setDescription] = useState('');
+    const { addTask } = useTaskContext();
+
+    const submitTask = () => {
+        if (!description.trim()) {
+            return;
+        }
+        addTask(description);
+        setDescription('');
+        router.navigate('/tasks');
+    }
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -21,9 +37,15 @@ export default function AddTask() {
                         multiline={true}
                         numberOfLines={10}
                         style={styles.formInput}
-                        placeholder="Digite aqui..."
+                        value={description}
+                        onChangeText={setDescription}
                     />
-                    <Pressable style={styles.saveButton}>
+                    <Pressable
+                        style={styles.saveButton}
+                        onPress={() => {
+                            submitTask();
+                        }}
+                    >
                         <IconSave />
                         <Text style={styles.buttonText}>
                             Salvar
