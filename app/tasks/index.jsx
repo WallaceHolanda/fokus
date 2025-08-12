@@ -7,12 +7,11 @@ import { IconPlus } from "../../components/icons";
 
 export default function Tasks() {
 
-    const { tasks } = useTaskContext();
+    const { tasks, deleteTask, toggleTaskCompleted } = useTaskContext();
 
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-
                 <View style={styles.inner}>
                     <FlatList
                         data={tasks}
@@ -24,6 +23,12 @@ export default function Tasks() {
                                 key={item.id}
                                 text={item.description}
                                 completed={item.completed}
+                                onPressDelete={() => {
+                                    deleteTask(item.id);
+                                }}
+                                onToggleComplete={() => {
+                                    toggleTaskCompleted(item.id);
+                                }}
                             />
                         }
                         ListFooterComponent={
