@@ -38,8 +38,6 @@ export function TasksProvider({ children }) {
         }
     }, [tasks]);
 
-
-
     const addTask = (description) => {
         console.log('Adding task:', description);
         setTasks(prevTasks => {
@@ -53,10 +51,25 @@ export function TasksProvider({ children }) {
         })
     }
 
+    const updateTask = (id, description) => {
+        console.log('Id: ', id, 'Description: ', description);
+        console.log(tasks)
+        setTasks(prevTasks => {
+            return prevTasks.map(task => {
+                if (task.id == id) {
+                    console.log('Task found');
+                    task.description = description;
+                }
+                return task;
+            });
+        });
+
+    }
+
     const toggleTaskCompleted = (id) => {
         setTasks(prevTasks => {
             return prevTasks.map(task => {
-                if (task.id === id) {
+                if (task.id == id) {
                     task.completed = !task.completed;
                 }
                 return task;
@@ -76,6 +89,7 @@ export function TasksProvider({ children }) {
             addTask,
             deleteTask,
             toggleTaskCompleted,
+            updateTask
         }}>
             {children}
         </TaskContext.Provider>

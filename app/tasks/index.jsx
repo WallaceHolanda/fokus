@@ -29,6 +29,10 @@ export default function Tasks() {
                                 onToggleComplete={() => {
                                     toggleTaskCompleted(item.id);
                                 }}
+                                onPressEdit={() => {
+                                    router.navigate(`/edit-task/${item.id}`);
+                                }}
+
                             />
                         }
                         ListFooterComponent={
