@@ -1,31 +1,44 @@
 import { router } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { FokusButton } from "../../components/FokusButton";
 import TaskItem from "../../components/TaskItem";
+import useTaskContext from "../../components/context/useTaskContext";
 import { IconPlus } from "../../components/icons";
 
 export default function Tasks() {
+
+    const { tasks } = useTaskContext();
+
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <Text style={styles.title}>
-                    Lista de tarefas:
-                </Text>
+
                 <View style={styles.inner}>
-                    <TaskItem
-                        completed
-                        text="Sample Task"
-                    />
-                    <TaskItem
-                        text="Sample Task"
+                    <FlatList
+                        data={tasks}
+                        contentContainerStyle={{ gap: 8 }}
+                        keyExtractor={(item) => item.id}
+                        ListHeaderComponent={() => <Text style={styles.title}>Lista de tarefas:</Text>}
+                        renderItem={({ item }) =>
+                            <TaskItem
+                                key={item.id}
+                                text={item.description}
+                                completed={item.completed}
+                            />
+                        }
+                        ListFooterComponent={
+                            <View style={{ marginTop: 16 }}>
+                                <FokusButton
+                                    title="Adicionar nova tarefa"
+                                    icon={<IconPlus />}
+                                    outline
+                                    onPress={() => { router.navigate('/add-task') }}
+                                />
+                            </View>
+                        }
                     />
                 </View>
-                <FokusButton
-                    title="Adicionar nova tarefa"
-                    icon={<IconPlus />}
-                    outline
-                    onPress={() => { router.navigate('/add-task') }}
-                />
+
             </View>
         </View>
     )
@@ -45,6 +58,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: '#FFFFFF',
         textAlign: 'center',
+        marginBottom: 16,
     },
     inner: {
         gap: 8,

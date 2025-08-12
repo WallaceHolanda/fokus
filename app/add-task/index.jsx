@@ -5,11 +5,11 @@ import useTaskContext from "../../components/context/useTaskContext";
 import { IconSave } from "../../components/icons";
 export default function AddTask() {
 
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState();
     const { addTask } = useTaskContext();
 
     const submitTask = () => {
-        if (!description.trim()) {
+        if (!description) {
             return;
         }
         addTask(description);
@@ -21,7 +21,6 @@ export default function AddTask() {
         <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-
         >
             <TouchableWithoutFeedback
                 onPress={Keyboard.dismiss}

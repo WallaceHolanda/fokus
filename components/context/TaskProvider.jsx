@@ -8,7 +8,7 @@ export function TasksProvider({ children }) {
 
     const addTask = (description) => {
         console.log('Adding task:', description);
-        setTasks((prevTasks) => {
+        setTasks(prevTasks => {
             return [
                 ...prevTasks,
                 {
@@ -19,14 +19,11 @@ export function TasksProvider({ children }) {
         })
     }
 
-    const toggleTaskCompletion = (id) => {
-        setTasks((prevTasks) => {
+    const toggleTaskCompleted = (id) => {
+        setTasks(prevTasks => {
             return prevTasks.map(task => {
                 if (task.id === id) {
-                    return {
-                        ...task,
-                        completed: !task.completed,
-                    };
+                    task.completed = !task.completed;
                 }
                 return task;
             });
@@ -34,8 +31,8 @@ export function TasksProvider({ children }) {
     }
 
     const deleteTask = (id) => {
-        setTasks((prevTasks) => {
-            return prevTasks.filter(task => task.id !== id);
+        setTasks(prevTasks => {
+            return prevTasks.filter(t => t.id != id);
         });
     }
 
@@ -44,7 +41,7 @@ export function TasksProvider({ children }) {
             tasks,
             addTask,
             deleteTask,
-            toggleTaskCompletion,
+            toggleTaskCompleted,
         }}>
             {children}
         </TaskContext.Provider>
