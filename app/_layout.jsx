@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BackButtonDrawer } from '../components/BackButtonDrawer';
 import { TasksProvider } from '../components/context/TaskProvider';
 
 export default function Layout() {
@@ -37,13 +36,18 @@ export default function Layout() {
                             drawerItemStyle: { display: 'none' },
                             title: '',
                             headerLeft: () => {
-                                return <Ionicons
-                                    name='arrow-back'
-                                    size={24}
-                                    color='#FFF'
-                                    style={{ marginLeft: 16 }}
-                                    onPress={() => router.navigate('/tasks')}
-                                />
+                                return <BackButtonDrawer backRoute="/tasks" />
+                            },
+
+                        }}
+                    />
+                    <Drawer.Screen
+                        name='edit-task/[id]'
+                        options={{
+                            drawerItemStyle: { display: 'none' },
+                            title: '',
+                            headerLeft: () => {
+                                return <BackButtonDrawer backRoute="/tasks" />
                             },
 
                         }}
