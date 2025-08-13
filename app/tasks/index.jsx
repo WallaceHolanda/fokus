@@ -17,6 +17,11 @@ export default function Tasks() {
                         data={tasks}
                         contentContainerStyle={{ gap: 8 }}
                         keyExtractor={(item) => item.id}
+                        ListEmptyComponent={() =>
+                            <Text style={styles.emptyTitle}>
+                                Ainda não há tarefas na sua lista, que tal adicionar?
+                            </Text>
+                        }
                         ListHeaderComponent={() => <Text style={styles.title}>Lista de tarefas:</Text>}
                         renderItem={({ item }) =>
                             <TaskItem
@@ -68,6 +73,13 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         marginBottom: 16,
+    },
+    emptyTitle: {
+        fontSize: 18,
+        marginTop: 40,
+        marginBottom: 24,
+        color: '#98A0A8',
+        textAlign: 'center',
     },
     inner: {
         gap: 8,
