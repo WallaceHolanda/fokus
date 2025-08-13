@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { ActionButton } from '../components/ActionButton';
 import { FokusButton } from '../components/FokusButton';
 import { IconPause, IconPlay } from '../components/icons';
-import { Timer } from '../components/timer';
+import { Timer } from '../components/Timer';
 
 const pomodoro = [
     {
