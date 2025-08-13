@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ActionButton } from '../components/ActionButton';
 import { FokusButton } from '../components/FokusButton';
 import { IconPause, IconPlay } from '../components/icons';
@@ -70,42 +70,49 @@ export default function Pomodoro() {
     }
 
     return (
-        <View style={styles.container}>
-            <Image source={timerType.image} />
-            <View style={styles.actions} >
-                <View style={styles.context}>
-                    {pomodoro.map((item) => (
-                        <ActionButton
-                            key={item.id}
-                            display={item.display}
-                            active={item.id === timerType.id}
-                            onPress={() => toggleTimerType(item)}
-                        >
-                        </ActionButton>
-                    ))}
-                </View>
-                <Timer totalSeconds={seconds}></Timer>
-                <FokusButton
-                    title={timerRunning ? 'Pausar' : 'Começar'}
-                    icon={timerRunning ? <IconPause /> : <IconPlay />}
-                    onPress={toggleTimer}>
+        <SafeAreaView style={styles.container}>
+            <ScrollView
+                contentContainerStyle={styles.inner}
+            >
+                <Image source={timerType.image} />
+                <View style={styles.actions} >
+                    <View style={styles.context}>
+                        {pomodoro.map((item) => (
+                            <ActionButton
+                                key={item.id}
+                                display={item.display}
+                                active={item.id === timerType.id}
+                                onPress={() => toggleTimerType(item)}
+                            >
+                            </ActionButton>
+                        ))}
+                    </View>
+                    <Timer totalSeconds={seconds}></Timer>
+                    <FokusButton
+                        title={timerRunning ? 'Pausar' : 'Começar'}
+                        icon={timerRunning ? <IconPause /> : <IconPlay />}
+                        onPress={toggleTimer}>
 
-                </FokusButton>
-            </View>
-            <View style={styles.footer}>
-                <Text style={styles.footerText}>Projeto sem fins lucrativos.</Text>
-                <Text style={styles.footerText}>Desenvolvido na Alura.</Text>
-            </View>
-        </View>
+                    </FokusButton>
+                </View>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>Projeto sem fins lucrativos.</Text>
+                    <Text style={styles.footerText}>Desenvolvido na Alura.</Text>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        gap: 40,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: '#021123',
+    },
+    inner: {
+        gap: 40,
+        alignItems: 'center',
     },
     context: {
         flexDirection: 'row',
@@ -128,5 +135,5 @@ const styles = StyleSheet.create({
         color: '#98A0A8',
         textAlign: 'center',
         fontSize: 12.5,
-    },
+    }
 });
